@@ -1,11 +1,12 @@
 {
   "name": "Chikujoin_Magane",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Professional liar.",
   "main": "bot.js",
-  "author": "Drone",
+  "scripts": {
+    "start": "node bot.js"
   "dependencies": {
-    "discord.io": "github:woor/discord.io#gateway_v6",
-    "winston": "^2.4.0"
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
   }
 }
