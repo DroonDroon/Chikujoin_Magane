@@ -84,6 +84,5 @@ client.on('message', message => {
      }
 });
 
-});
 
 client.login(proecess.env.BOT_TOKEN);
