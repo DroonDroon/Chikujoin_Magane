@@ -1,7 +1,7 @@
 const Discord =  require('discord.js');
 const client = new Discord.Client();
 
-client.om('ready', () => {
+client.on('ready', () => {
     console.log('I am ready!');
     
 });
@@ -19,14 +19,14 @@ client.on('message', message => {
         switch(cmd) {
             // !ping
             case 'lie':
-                bot.sendMessage({
+                client.sendMessage({
                     to: channelID,
                     message: 'Uso no uso, sore wa kururi to uragaeru!'
                 });
             break;
             // Just add any case commands if you want to..
            case 'ayy':
-           bot.sendMessage({
+           client.sendMessage({
             to: channelID,
             message: 'LMAO'
            });
@@ -48,7 +48,7 @@ client.on('message', message => {
            else if (num===4){ str+= "https://giffiles.alphacoders.com/109/109649.gif"  }
            else if (num===5){ str+= "https://giffiles.alphacoders.com/109/109638.gif"}
            else if (num===6){ str+= "https://78.media.tumblr.com/592d567c4f2e228995698c4a95564595/tumblr_opzb35kw1p1uzwbyjo1_500.gif"}
-              bot.sendMessage({
+              client.sendMessage({
                to: channelID,
                message: str
 
@@ -75,7 +75,7 @@ client.on('message', message => {
            });
            break;
             case 'help':
-           bot.sendMessage({
+           client.sendMessage({
             to: channelID,
             message: '!lie, !magane, !ayy'
             
