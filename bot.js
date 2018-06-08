@@ -1,19 +1,13 @@
-var Discord = require('discord.io');
-var logger = require('winston');
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-    colorize: true
-});
-logger.level = 'debug';
-// Initialize Discord Bot
+const Discord = require('discord.js')
+const client = new Discord.Client();
 
-bot.on('ready', function (evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+
+
+
+client.on('ready', () => {
+    console.log('Hello!');
 });
-bot.on('message', function (user, userID, channelID, message, evt) {
+client.on('message', message => {
 
     
     // Our bot needs to know if it will execute a command
@@ -29,14 +23,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'lie':
-                bot.sendMessage({
+                client.sendMessage({
                     to: channelID,
                     message: 'Uso no uso, sore wa kururi to uragaeru!'
                 });
             break;
             // Just add any case commands if you want to..
            case 'ayy':
-           bot.sendMessage({
+           client.sendMessage({
             to: channelID,
             message: 'LMAO'
            });
@@ -58,7 +52,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
            else if (num===4){ str+= "https://giffiles.alphacoders.com/109/109649.gif"  }
            else if (num===5){ str+= "https://giffiles.alphacoders.com/109/109638.gif"}
            else if (num===6){ str+= "https://78.media.tumblr.com/592d567c4f2e228995698c4a95564595/tumblr_opzb35kw1p1uzwbyjo1_500.gif"}
-              bot.sendMessage({
+              client.sendMessage({
                to: channelID,
                message: str
 
@@ -85,7 +79,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
            });
            break;
             case 'help':
-           bot.sendMessage({
+           client.sendMessage({
             to: channelID,
             message: '!lie, !magane, !ayy'
             
@@ -95,4 +89,4 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          }
      }
 });
-bot.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
