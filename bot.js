@@ -8,6 +8,7 @@ client.on('ready', () => {
     console.log('Hello!');
 });
 client.on('message', message => {
+client.login(process.env.BOT_TOKEN);
 
     
     // Our bot needs to know if it will execute a command
@@ -89,4 +90,3 @@ client.on('message', message => {
          }
      }
 });
-client.login(process.env.BOT_TOKEN);
