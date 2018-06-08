@@ -1,14 +1,27 @@
-const Discord =  require('discord.js');
-const client = new Discord.Client();
-
-client.on('ready', () => {
-    console.log('I am ready!');
-    
+var Discord = require('discord.io');
+var logger = require('winston');
+var auth = require('./auth.json');
+// Configure logger settings
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+    colorize: true
 });
+logger.level = 'debug';
+// Initialize Discord Bot
+var bot = new Discord.Client({
+   token: auth.token,
+   autorun: true
+});
+bot.on('ready', function (evt) {
+    logger.info('Connected');
+    logger.info('Logged in as: ');
+    logger.info(bot.username + ' - (' + bot.id + ')');
+});
+bot.on('message', function (user, userID, channelID, message, evt) {
 
-
-client.on('message', message => {
- if (message.substring(0, 1) == '!') {
+    // Our bot needs to know if it will execute a command
+    // It will listen for messages that will start with `!`
+    if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
         var str = "";
@@ -19,14 +32,14 @@ client.on('message', message => {
         switch(cmd) {
             // !ping
             case 'lie':
-                client.sendMessage({
+                bot.sendMessage({
                     to: channelID,
                     message: 'Uso no uso, sore wa kururi to uragaeru!'
                 });
             break;
             // Just add any case commands if you want to..
            case 'ayy':
-           client.sendMessage({
+           bot.sendMessage({
             to: channelID,
             message: 'LMAO'
            });
@@ -48,7 +61,7 @@ client.on('message', message => {
            else if (num===4){ str+= "https://giffiles.alphacoders.com/109/109649.gif"  }
            else if (num===5){ str+= "https://giffiles.alphacoders.com/109/109638.gif"}
            else if (num===6){ str+= "https://78.media.tumblr.com/592d567c4f2e228995698c4a95564595/tumblr_opzb35kw1p1uzwbyjo1_500.gif"}
-              client.sendMessage({
+              bot.sendMessage({
                to: channelID,
                message: str
 
@@ -75,7 +88,7 @@ client.on('message', message => {
            });
            break;
             case 'help':
-           client.sendMessage({
+           bot.sendMessage({
             to: channelID,
             message: '!lie, !magane, !ayy'
             
@@ -85,5 +98,3 @@ client.on('message', message => {
          }
      }
 });
-client.login(proecess.env.BOT_TOKEN);
-
