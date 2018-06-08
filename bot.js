@@ -1,34 +1,11 @@
-
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-   
-// Load up the discord.js library
-const Discord = require("discord.js");
-
-// This is your client. Some people call it `bot`, some people call it `self`, 
-// some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
-// this is what we're refering to. Your client.
+const Discord =  require('discord.js');
 const client = new Discord.Client();
 
-
-
-client.on("ready", () => {
-  // This event will run if the bot starts, and logs in, successfully.
-  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
-  // Example of changing the bot's playing game to something useful. `client.user` is what the
-  // docs refer to as the "ClientUser".
-  client.user.setActivity(`Serving ${client.guilds.size} servers`);
+client.om('ready', () => {
+    console.log('I am ready!');
 });
 
-
-
-client.on("message", async message => {
-
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  
-  // Let's go with a few common example commands! Feel free to delete or change those.
-  
+client.on('message', message => {
   if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
@@ -105,6 +82,8 @@ client.on("message", async message => {
            break;
          }
      }
+});
+
 });
 
 client.login(proecess.env.BOT_TOKEN);
